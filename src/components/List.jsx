@@ -1,1 +1,16 @@
-export function List() {}
+import { Link } from "react-router";
+
+export default function List() {
+  const list = [1, 2, 3, 4];
+  const listElements = list.map((item) => (
+    <li>
+      <Link to="">{item}</Link>
+    </li>
+  ));
+
+  return (
+    <div className="postList">
+      <ul>{listElements}</ul>
+    </div>
+  );
+}
