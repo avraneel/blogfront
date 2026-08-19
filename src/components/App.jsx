@@ -1,9 +1,13 @@
-import SignUp from "./SignUp.jsx";
+import { Outlet } from "react-router";
+import Topbar from "./Topbar";
 
 export default function App() {
   return (
     <>
-      <SignUp />
+      <div className="content">
+        <Topbar />
+        <Outlet />
+      </div>
     </>
   );
 }
