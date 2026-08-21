@@ -2,7 +2,7 @@ export default function Login() {
   return (
     <div className="login">
       <h2>Log In</h2>
-      <form action="/posts" method="post">
+      <form action="users" method="post">
         <div className="formItem">
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" />

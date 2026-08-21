@@ -2,7 +2,7 @@ export default function SignUp() {
   return (
     <main>
       <h2>Sign Up</h2>
-      <form action="/posts" method="post">
+      <form action="users" method="post">
         <div className="formItem">
           <label htmlFor="fullname">Full Name</label>
           <input type="text" name="fullname" id="fullname" />
