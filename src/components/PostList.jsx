@@ -11,23 +11,25 @@ const list = [
 ];
 
 export default function PostList() {
-  useEffect(() => {
+  useEffect(async () => {
     async function fetchPosts() {
       const response = await fetch("http://localhost:3000/posts");
+      const data = await response.json();
+      console.log(data);
+
+      return data;
     }
 
-    fetchPosts();
+    const listElements = posts.map((post) => (
+      <li key={post.id}>
+        <Link to="posts/1">{post.title}</Link>
+      </li>
+    ));
+
+    return (
+      <div className="postList">
+        <ul>{listElements}</ul>
+      </div>
+    );
   }, []);
-
-  const listElements = list.map((post) => (
-    <li key={post.id}>
-      <Link to="posts/1">{post.title}</Link>
-    </li>
-  ));
-
-  return (
-    <div className="postList">
-      <ul>{listElements}</ul>
-    </div>
-  );
 }
