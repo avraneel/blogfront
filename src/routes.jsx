@@ -1,17 +1,18 @@
 import App from "./components/App";
-import Topbar from "./components/Topbar";
+import PostList from "./components/PostList";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
-import List from "./components/List";
+import Post from "./components/Post";
 
 const routes = [
   {
     path: "/",
     Component: App,
     children: [
-      { path: "/", Component: List },
+      { path: "/", Component: PostList },
       { path: "signup", Component: SignUp },
       { path: "login", Component: Login },
+      { path: "posts/:postNum", Component: Post },
     ],
   },
 ];
