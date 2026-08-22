@@ -1,4 +1,4 @@
-import { Comment } from "./Comment";
+import Comment from "./Comment";
 
 const comments = [
   {
@@ -21,11 +21,12 @@ const comments = [
   },
 ];
 
-export function CommentSection() {
+export function CommentSection({ comments }) {
   const commentComponents = comments.map((comment) => (
     <Comment
-      name={comment.name}
-      date={comment.date}
+      key={comment.id}
+      authorId={comment.authorId}
+      date={comment.createdAt}
       content={comment.content}
     />
   ));

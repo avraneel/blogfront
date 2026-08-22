@@ -12,7 +12,7 @@ const routes = [
       { path: "/", Component: PostList },
       { path: "signup", Component: SignUp },
       { path: "login", Component: Login },
-      { path: "posts/:postNum", Component: Post },
+      { path: "posts/:postId", Component: Post },
     ],
   },
 ];
