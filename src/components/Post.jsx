@@ -30,8 +30,7 @@ export default function Post() {
     <article className="post">
       <h2>{post.title}</h2>
       <p>{post.content}</p>
-      <h3>Comments</h3>
-      <CommentSection comments={comments} />
+      <CommentSection postId={postId} comments={comments} />
     </article>
   );
 }
