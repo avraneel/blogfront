@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className={`login ${styles.formContainer}`}>
       <h2>Log In</h2>
-      <form action={url} method="post" className={styles.formContainer}>
+      <form action={handleSubmit} className={styles.formContainer}>
         <div className={styles.formItem}>
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" />
@@ -18,4 +18,27 @@ export default function Login() {
       </form>
     </div>
   );
+}
+
+async function handleSubmit(formData) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const request = {
+    method: "POST",
+    body: JSON.stringify({
+      email: formData.get("email"),
+      password: formData.get("password"),
+    }),
+    headers: myHeaders,
+  };
+
+  const response = await fetch("http://localhost:3000/login", request);
+  // as soon as header arrives, the promise resolves to response object, so first check header
+  if (!response.ok) {
+    throw new Error(`Response Status : ${response.status}`);
+  }
+
+  const jwt = await response.json();
+  localStorage.setItem("token", `Bearer ${jwt.token}`);
 }
