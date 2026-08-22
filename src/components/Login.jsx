@@ -1,17 +1,20 @@
+import styles from "../styles/authForm.module.css";
+
 export default function Login() {
+  const url = "http://localhost:3000/login";
   return (
-    <div className="login">
+    <div className={`login ${styles.formContainer}`}>
       <h2>Log In</h2>
-      <form action="users" method="post">
-        <div className="formItem">
+      <form action={url} method="post" className={styles.formContainer}>
+        <div className={styles.formItem}>
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" />
         </div>
-        <div className="formItem">
+        <div className={styles.formItem}>
           <label htmlFor="password">Password</label>
           <input type="password" name="password" id="password" />
         </div>
-        <button>Submit</button>
+        <button className={styles.submitButton}>Submit</button>
       </form>
     </div>
   );

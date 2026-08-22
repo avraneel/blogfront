@@ -10,26 +10,19 @@ const list = [
   },
 ];
 
+/**
+ * @desc List of Post titles to be displayed in the home page
+ */
 export default function PostList() {
-  useEffect(async () => {
-    async function fetchPosts() {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
-      console.log(data);
+  const listElements = list.map((post) => (
+    <li key={post.id}>
+      <Link to="posts/1">{post.title}</Link>
+    </li>
+  ));
 
-      return data;
-    }
-
-    const listElements = posts.map((post) => (
-      <li key={post.id}>
-        <Link to="posts/1">{post.title}</Link>
-      </li>
-    ));
-
-    return (
-      <div className="postList">
-        <ul>{listElements}</ul>
-      </div>
-    );
-  }, []);
+  return (
+    <div className="postList">
+      <ul>{listElements}</ul>
+    </div>
+  );
 }

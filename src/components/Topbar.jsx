@@ -1,18 +1,25 @@
 import { Link } from "react-router";
+import styles from "../styles/topBar.module.css";
 
 export default function Topbar() {
   const topBar = (
     <>
       <nav>
-        <ul>
+        <ul className={styles.topBar}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" className={styles.topBarItem}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="login">Login</Link>
+            <Link to="login" className={styles.topBarItem}>
+              Login
+            </Link>
           </li>
           <li>
-            <Link to="signup">Sign Up</Link>
+            <Link to="signup" className={styles.topBarItem}>
+              Sign Up
+            </Link>
           </li>
         </ul>
       </nav>
