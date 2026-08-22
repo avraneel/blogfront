@@ -1,22 +1,23 @@
 import { Link } from "react-router";
+import { useState } from "react";
 import { useEffect } from "react";
 
-const list = [
-  {
-    id: 33,
-    title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-    content:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, officia quisquam, eligendi veritatis labore optio aperiam facilis soluta doloribus dolores voluptas impedit! Iusto perspiciatis error consequuntur impedit officiis odio ipsum.",
-  },
-];
-
-/**
- * @desc List of Post titles to be displayed in the home page
- */
 export default function PostList() {
-  const listElements = list.map((post) => (
+  const [postTitles, setPostTitles] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("http://localhost:3000/posts");
+      const data = await response.json();
+
+      setPostTitles(data);
+    }
+
+    getData();
+  }, []);
+
+  const listElements = postTitles.map((post) => (
     <li key={post.id}>
-      <Link to="posts/1">{post.title}</Link>
+      <Link to={`posts/${post.id}`}>{post.title}</Link>
     </li>
   ));
 
