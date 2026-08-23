@@ -23,19 +23,22 @@ export function CommentSection({ postId, session }) {
       authorName={comment.author.fullname}
       date={comment.createdAt}
       content={comment.content}
-      showDelete={comment.author.id === session.id}
+      showDelete={session ? comment.author.id === session.id : false}
       updateFlag={updateFlag}
       setUpdateFlag={setUpdateFlag}
     />
   ));
   return (
     <div className="commentSection">
-      <CommentBox
-        postId={postId}
-        updateFlag={updateFlag}
-        setUpdateFlag={setUpdateFlag}
-        session={session}
-      />
+      <h2>Comments</h2>
+      {session && (
+        <CommentBox
+          postId={postId}
+          updateFlag={updateFlag}
+          setUpdateFlag={setUpdateFlag}
+          session={session}
+        />
+      )}
       <div className="comments">{commentComponents}</div>
     </div>
   );
