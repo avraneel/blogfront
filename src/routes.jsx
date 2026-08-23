@@ -3,6 +3,7 @@ import PostList from "./components/PostList";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import Post from "./components/Post";
+import User from "./components/User";
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const routes = [
       { path: "signup", Component: SignUp },
       { path: "login", Component: Login },
       { path: "posts/:postId", Component: Post },
+      { path: "users/:userId", Component: User },
     ],
   },
 ];

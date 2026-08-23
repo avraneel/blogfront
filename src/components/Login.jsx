@@ -1,18 +1,24 @@
+import { useNavigate, useOutletContext } from "react-router";
 import styles from "../styles/authForm.module.css";
 
 export default function Login() {
+  const [session, setSession] = useOutletContext();
+  let navigate = useNavigate();
   const url = "http://localhost:3000/login";
   return (
     <div className={`login ${styles.formContainer}`}>
       <h2>Log In</h2>
-      <form action={handleSubmit} className={styles.formContainer}>
+      <form
+        action={(formData) => handleSubmit(formData, setSession, navigate)}
+        className={styles.formContainer}
+      >
         <div className={styles.formItem}>
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <label htmlFor="email">Email *</label>
+          <input type="email" name="email" id="email" required />
         </div>
         <div className={styles.formItem}>
-          <label htmlFor="password">Password</label>
-          <input type="password" name="password" id="password" />
+          <label htmlFor="password">Password *</label>
+          <input type="password" name="password" id="password" required />
         </div>
         <button className={styles.submitButton}>Submit</button>
       </form>
@@ -20,7 +26,7 @@ export default function Login() {
   );
 }
 
-async function handleSubmit(formData) {
+async function handleSubmit(formData, setSession, navigate) {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -40,5 +46,9 @@ async function handleSubmit(formData) {
   }
 
   const jwt = await response.json();
+  setSession(jwt.user);
   localStorage.setItem("token", `Bearer ${jwt.token}`);
+  localStorage.setItem("session", JSON.stringify(jwt.user));
+  // redirect
+  navigate(`/users/${jwt.user.id}`);
 }

@@ -1,6 +1,6 @@
 import styles from "../styles/authForm.module.css";
 
-export default function CommentBox({ postId }) {
+export default function CommentBox({ postId, updateFlag, setUpdateFlag }) {
   const url = "http://localhost:3000/comments";
 
   async function handleSubmit(formData) {
@@ -18,18 +18,19 @@ export default function CommentBox({ postId }) {
         postId: postId,
       }),
     };
-    console.log(request);
+
     const response = await fetch(url, request);
-    const data = await response.json();
-    console.log(data);
+    if (response.ok) {
+      setUpdateFlag((updateFlag) => !updateFlag);
+    }
   }
 
   return (
     <div>
       <form action={handleSubmit} className={styles.formBody}>
         <div className={styles.formItem}>
-          <label htmlFor="comment">Write a comment</label>
-          <textarea name="comment" id="comment"></textarea>
+          <label htmlFor="comment">Write a comment *</label>
+          <textarea name="comment" id="comment" required></textarea>
         </div>
         <button className={styles.submitButton}>Submit</button>
       </form>
