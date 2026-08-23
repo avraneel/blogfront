@@ -5,7 +5,7 @@ import styles from "../styles/content.module.css";
 
 export default function App() {
   const [session, setSession] = useState(
-    () => localStorage.getItem("session") || null,
+    () => JSON.parse(localStorage.getItem("session")) || null,
   );
   console.log(session);
   return (

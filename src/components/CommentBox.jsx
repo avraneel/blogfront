@@ -1,21 +1,20 @@
 import styles from "../styles/authForm.module.css";
 
-export default function CommentBox({ postId, updateFlag, setUpdateFlag }) {
+export default function CommentBox({ postId, setUpdateFlag, session }) {
   const url = "http://localhost:3000/comments";
-
   async function handleSubmit(formData) {
     const token = localStorage.getItem("token");
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", token);
-
     const request = {
       method: "POST",
       headers: myHeaders,
       body: JSON.stringify({
         content: formData.get("comment"),
         postId: postId,
+        authorId: session.id,
       }),
     };
 

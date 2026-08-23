@@ -2,10 +2,9 @@ import Comment from "./Comment";
 import CommentBox from "./CommentBox";
 import { useState, useEffect } from "react";
 
-export function CommentSection({ postId }) {
+export function CommentSection({ postId, session }) {
   const [postComments, setPostComments] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
-
   useEffect(() => {
     async function getComments(postId) {
       const response = await fetch(
@@ -20,9 +19,13 @@ export function CommentSection({ postId }) {
   const commentComponents = postComments.map((comment) => (
     <Comment
       key={comment.id}
-      authorId={comment.authorId}
+      id={comment.id}
+      authorName={comment.author.fullname}
       date={comment.createdAt}
       content={comment.content}
+      showDelete={comment.author.id === session.id}
+      updateFlag={updateFlag}
+      setUpdateFlag={setUpdateFlag}
     />
   ));
   return (
@@ -31,6 +34,7 @@ export function CommentSection({ postId }) {
         postId={postId}
         updateFlag={updateFlag}
         setUpdateFlag={setUpdateFlag}
+        session={session}
       />
       <div className="comments">{commentComponents}</div>
     </div>
