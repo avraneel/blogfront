@@ -1,4 +1,5 @@
 import { useOutletContext } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function User() {
   const [session, setSession] = useOutletContext();
