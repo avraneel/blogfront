@@ -1,5 +1,6 @@
 import styles from "../styles/authForm.module.css";
 import { useNavigate } from "react-router";
+import url from "../../url";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function SignUp() {
       }),
     };
 
-    const response = await fetch("http://localhost:3000/users", request);
+    const response = await fetch(`${url}/users`, request);
     if (response.ok) {
       navigate("/login");
     }

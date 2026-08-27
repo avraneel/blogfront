@@ -1,13 +1,12 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import url from "../../url";
 
 export default function PostList() {
   const [postTitles, setPostTitles] = useState([]);
   useEffect(() => {
     async function getData() {
-      const response = await fetch(
-        "http://localhost:3000/posts?published=true",
-      );
+      const response = await fetch(`${url}/posts?published=true`);
       const data = await response.json();
 
       setPostTitles(data);

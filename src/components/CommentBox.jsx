@@ -1,7 +1,8 @@
 import styles from "../styles/authForm.module.css";
+import backurl from "../../url";
 
 export default function CommentBox({ postId, setUpdateFlag, session }) {
-  const url = "http://localhost:3000/comments";
+  const url = `${backurl}/comments`;
   async function handleSubmit(formData) {
     const token = localStorage.getItem("token");
 
