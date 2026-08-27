@@ -40,7 +40,7 @@ async function handleSubmit(formData, setSession, navigate) {
     headers: myHeaders,
   };
 
-  const response = await fetch(`${url}/login`, request);
+  const response = await fetch(`${backurl}/login`, request);
   // as soon as header arrives, the promise resolves to response object, so first check header
   if (!response.ok) {
     throw new Error(`Response Status : ${response.status}`);
